@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 17:52:05 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/07/12 20:58:39 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/07/13 01:25:03 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,4 @@ void	sa(t_stack *stack[2])
 		stack_push_back(stack[0], ptr[1]);
 	}
 	ft_putstr_fd("sa\n", STDOUT_FILENO);
-}
-
-void	rra(t_stack *stack[2])
-{
-	void	*ptr;
-
-	if (stack[0]->size == 0)
-		return ;
-	ptr = stack[0]->head->content;
-	stack_pop_front(stack[0], NULL);
-	stack_push_back(stack[0], ptr);
-	ft_putstr_fd("rra\n", STDOUT_FILENO);
 }

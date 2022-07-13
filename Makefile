@@ -6,7 +6,7 @@
 #    By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 14:03:47 by ghenaut-          #+#    #+#              #
-#    Updated: 2022/07/12 21:01:11 by ghenaut-         ###   ########.fr        #
+#    Updated: 2022/07/13 01:26:38 by ghenaut-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ SRCS	= 	push_swap.c \
 			moves.c \
 			radix.c \
 			small_sort.c \
-			print_debug.c
+			small_sort_utils.c \
 
 B_SRCS	=   
 

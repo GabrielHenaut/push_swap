@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 22:56:02 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/07/12 21:01:00 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/07/13 01:18:38 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "../libft/libft.h"
+
+//./tester.sh ../ 500 10 && ./tester.sh ../ 100 10 && ./tester.sh ../ 50 10 && ./tester.sh ../ 10 10 && ./tester.sh ../ 5 10 && ./tester.sh ../ 4 10 && ./tester.sh ../ 3 10 && ./tester.sh ../ 2 10 && ./tester.sh ../ 1 10
 
 typedef struct s_double_list
 {
@@ -71,6 +73,10 @@ void			ra(t_stack *stack[2]);
 void			rb(t_stack *stack[2]);
 void			sa(t_stack *stack[2]);
 void			rra(t_stack *stack[2]);
+void			get_digits(t_stack *stack, t_digits *digits, int size);
+void			init_checks(t_stack *stack[2]);
+void	reinsert_b(t_stack *stack[2]);
+
 
 void print_debug(t_stack *a, t_stack *b, size_t size);
 

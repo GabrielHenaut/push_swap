@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 11:18:52 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/07/12 20:55:08 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/07/13 01:25:39 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	push_swap(int *arr, int size)
 		while ((1 << max_bit) < stack[0]->size)
 			++max_bit;
 		while (i++ < max_bit)
-			radix_move(stack, max_bit, i);  
+			radix_move(stack, max_bit, i);
 	}
 	else
 		sort_small(stack);
