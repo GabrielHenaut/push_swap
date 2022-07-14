@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 23:11:15 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/07/13 20:31:56 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/07/13 21:53:33 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../includes/push_swap_bonus.h"
 
 static int	check_overflow(char *str)
 {
@@ -21,7 +21,7 @@ static int	check_overflow(char *str)
 	return (0);
 }
 
-static void	fill_array(int **arr, int **arr_norm, char *str, int i)
+static void	fill_array(int **arr, char *str, int i)
 {
 	int	tmp;
 	int	counter;
@@ -33,11 +33,10 @@ static void	fill_array(int **arr, int **arr_norm, char *str, int i)
 		else if (ft_isdigit(*str) || *str == '-' || *str == '+')
 		{
 			if (check_overflow(str))
-				error_exit(arr, arr_norm, 7);
+				error_exit(arr, 7);
 			tmp = ft_atoi(str);
 			counter = i - 1;
 			(*arr)[counter] = tmp;
-			(*arr_norm)[counter] = tmp;
 			i++;
 			while (*str != ' ' && *str != '\0')
 				str++;
@@ -64,37 +63,30 @@ static int	find_len(char **argv)
 	return (len);
 }
 
-static void	get_array(int **arr, int **arr_norm, int argc, char **argv)
+static void	get_array(int **arr, int argc, char **argv, int len)
 {
 	int	i;
-	int	len;
 
-	len = find_len(argv);
 	i = 0;
 	*arr = (int *)malloc(len * sizeof(int));
 	if (!*arr)
 		msg_error(2);
-	*arr_norm = (int *)malloc(len * sizeof(int));
-	if (!*arr_norm)
-	{
-		free(*arr);
-		msg_error(3);
-	}
 	while (++i < argc)
-		fill_array(arr, arr_norm, argv[i], i);
+		fill_array(arr, argv[i], i);
+	if (has_duplicate(*arr, len))
+		error_exit(arr, 3);
 }
 
 int	main(int argc, char **argv)
 {
-	int	*arr;
-	int	*arr_norm;
-	int	len;
+	int		*arr;
+	int		len;
+	t_list	*instructions;
 
 	len = find_len(argv);
 	check_args(len, argv, argc);
-	get_array(&arr, &arr_norm, argc, argv);
-	normalize(&arr, &arr_norm, len);
-	push_swap(arr_norm, len);
+	get_array(&arr, argc, argv, len);
+	get_instructions(&instructions);
+	check_instructions(arr, len, instructions);
 	free(arr);
-	free(arr_norm);
 }

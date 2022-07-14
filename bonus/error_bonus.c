@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   args.c                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/09 14:41:55 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/07/13 20:31:29 by ghenaut-         ###   ########.fr       */
+/*   Created: 2022/07/09 00:26:44 by ghenaut-          #+#    #+#             */
+/*   Updated: 2022/07/13 20:14:47 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../includes/push_swap_bonus.h"
 
-static int	is_valid(char *str)
+void	msg_error(int error_code)
 {
-	while (*str)
-	{
-		if (!ft_isdigit(*str) && *str != '-' && *str != ' ')
-			return (0);
-		str++;
-	}
-	return (1);
+	write(STDERR_FILENO, "Error\n", 7);
+	exit(error_code);
 }
 
-void	check_args(int len, char **argv, int argc)
+void	error_exit(int **arr, int error_code)
 {
-	int	i;
-
-	i = 0;
-	if (argc == 1)
-		exit(0);
-	while (++i < len && argv[i])
-		if (!is_valid(argv[i]))
-			msg_error(1);
+	write(STDERR_FILENO, "Error\n", 7);
+	free(*arr);
+	exit(error_code);
 }

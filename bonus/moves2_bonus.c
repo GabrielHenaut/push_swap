@@ -1,36 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   args.c                                             :+:      :+:    :+:   */
+/*   moves2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/09 14:41:55 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/07/13 20:31:29 by ghenaut-         ###   ########.fr       */
+/*   Created: 2022/07/13 21:42:10 by ghenaut-          #+#    #+#             */
+/*   Updated: 2022/07/13 21:42:45 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../includes/push_swap_bonus.h"
 
-static int	is_valid(char *str)
+void	rra(t_stack *stack[2])
 {
-	while (*str)
-	{
-		if (!ft_isdigit(*str) && *str != '-' && *str != ' ')
-			return (0);
-		str++;
-	}
-	return (1);
-}
+	void	*ptr;
 
-void	check_args(int len, char **argv, int argc)
-{
-	int	i;
-
-	i = 0;
-	if (argc == 1)
-		exit(0);
-	while (++i < len && argv[i])
-		if (!is_valid(argv[i]))
-			msg_error(1);
+	if (stack[0]->size == 0)
+		return ;
+	ptr = stack[0]->head->content;
+	stack_pop_front(stack[0], NULL);
+	stack_push_back(stack[0], ptr);
 }

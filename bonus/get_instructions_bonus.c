@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   args.c                                             :+:      :+:    :+:   */
+/*   get_instructions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/09 14:41:55 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/07/13 20:31:29 by ghenaut-         ###   ########.fr       */
+/*   Created: 2022/07/13 19:49:57 by ghenaut-          #+#    #+#             */
+/*   Updated: 2022/07/13 20:59:49 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../includes/push_swap_bonus.h"
 
-static int	is_valid(char *str)
+void	get_instructions(t_list **lst)
 {
-	while (*str)
+	char	*line;
+	t_list	*tmp;
+	int		iteration;
+
+	line = get_next_line(STDIN_FILENO);
+	if (line)
+		*lst = ft_lstnew(line);
+	iteration = 0;
+	while (line)
 	{
-		if (!ft_isdigit(*str) && *str != '-' && *str != ' ')
-			return (0);
-		str++;
+		if (iteration > 0)
+		{
+			tmp = ft_lstnew(line);
+			ft_lstadd_back(lst, tmp);
+		}
+		iteration++;
+		line = get_next_line(STDIN_FILENO);
 	}
-	return (1);
-}
-
-void	check_args(int len, char **argv, int argc)
-{
-	int	i;
-
-	i = 0;
-	if (argc == 1)
-		exit(0);
-	while (++i < len && argv[i])
-		if (!is_valid(argv[i]))
-			msg_error(1);
 }

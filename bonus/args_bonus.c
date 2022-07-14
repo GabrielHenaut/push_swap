@@ -6,11 +6,11 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 14:41:55 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/07/13 20:31:29 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/07/13 20:31:18 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../includes/push_swap_bonus.h"
 
 static int	is_valid(char *str)
 {
@@ -33,4 +33,20 @@ void	check_args(int len, char **argv, int argc)
 	while (++i < len && argv[i])
 		if (!is_valid(argv[i]))
 			msg_error(1);
+}
+
+int	has_duplicate(int *arr, int size)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < size - 1)
+	{
+		j = i;
+		while (++j < size)
+			if (arr[i] == arr[j])
+				return (1);
+	}
+	return (0);
 }
